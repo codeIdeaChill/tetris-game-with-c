@@ -25,11 +25,15 @@ int main(){
     for(int i =0;i <4;i++){
         printf("(%d ,%d) \n", test.b1[i].x, test.b1[i].y);
     }
-    Move(&block,0 ,0);
+    
     while(!WindowShouldClose()){
 
-        handleEvent(&block);
-        int rot = rotition();
+        if(IsBlockoutside(block, rot)){
+            rot = Undorotition(rot);
+        }else{
+            rot = rotition(rot);
+        }
+        handleEvent(&block, rot);
         timer += GetFrameTime();
         if(timer >= movespeed){
             piecesY += 1;
