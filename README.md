@@ -17,7 +17,7 @@ make
 
 # windows:
 
-requirment mingw64 vesion of gcc
+requirment mingw64 version of gcc
 
 ```
 download the repo 
