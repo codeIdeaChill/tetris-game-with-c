@@ -2,13 +2,17 @@
 #include "grid.h"
 #define SIZE 4
 
+//cordinate 
 typedef struct{
     int x,y;
 }vector;
+
+//shapes matrix 4x4
 typedef struct{
     int shape[SIZE][SIZE];
 
 }Shape;
+//blocks parameters
 typedef struct Blocks{
     int id;
     Shape shape[SIZE];
@@ -16,6 +20,8 @@ typedef struct Blocks{
     Color color;
     void (*Move)(struct Blocks* self, int x, int y);
 }Blocks;
+
+//struct for getallblocks function
 typedef struct{
      Blocks blocks[7]; 
 }Shapes;

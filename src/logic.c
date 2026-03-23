@@ -1,6 +1,7 @@
-#include "map.h"
+#include "lib/map.h"
+#include "lib/rotition.h"
 
-
+//get position of all cell in blocks for collition 
 Posit Getcellposition(Blocks block, int rot){
     Posit cellpos;
     int i = 0;
@@ -16,12 +17,17 @@ Posit Getcellposition(Blocks block, int rot){
     }
     return cellpos;
 }
+
+
+//check if cell is outside the grid
 bool IsCelloutside(int row, int col){
     if(row >= 0 && row < cellRow  && col >= 0 && col < cellCol){
         return false;
     }
     return true;
 }
+
+//check if block is outside the grid 
 bool IsBlockoutside(Blocks block, int rot){
 
     Posit tiles = Getcellposition(block, rot);
@@ -32,3 +38,11 @@ bool IsBlockoutside(Blocks block, int rot){
     }
     return false;
 }
+
+//for new block if the current block is touch the bottom
+void NewBlock(){
+    Blocks currentBlock = GetRandomBlock();
+    Blocks nextBlock;
+    DrawTetromino(currentBlock , CellSize, rot, 0, 0);
+
+} 

@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include <raylib.h>
-#include "grid.h"
-#include "blocks.h"
-#include "rotition.h"
-#include "map.h"
+#include "../include/raylib.h"
+#include "lib/grid.h"
+#include "lib/blocks.h"
+#include "lib/rotition.h"
+#include "lib/map.h"
 #define WIDTH 500
 #define HIEGHT 600
 #define SellSize 30
@@ -15,16 +15,13 @@ float movespeed = 0.8f;
 
 
 int main(){
+    //initialse window
     InitWindow(WIDTH, HIEGHT, "tetris");
 
     SetTargetFPS(60);
-    Grid();
-    Print();
+    Grid(); // initial grid as 0
     Blocks block = GetRandomBlock();
     Posit test = Getcellposition(block, 0);
-    for(int i =0;i <4;i++){
-        printf("(%d ,%d) \n", test.b1[i].x, test.b1[i].y);
-    }
     
     while(!WindowShouldClose()){
 
@@ -42,7 +39,7 @@ int main(){
         BeginDrawing();
             ClearBackground(DARKBLUE);
             Draw();
-            DrawTetromino(block , SellSize, rot, 0, 0);
+            DrawTetromino(block , CellSize, rot, 0, 0);
         EndDrawing();
     }
 

@@ -1,5 +1,6 @@
-#include "blocks.h"
+#include "lib/blocks.h"
 
+//draw shapes 
 Blocks LShape(){
     Blocks peice = {
         .id = 1,
@@ -275,7 +276,7 @@ Blocks IShape(){
                 {0,0,0,0}
             },
         },
-        .position = {4,0},
+        .position = {0,0},
         .color = Cellcolor[peice.id], 
     };
     return peice;
@@ -298,15 +299,18 @@ void DrawTetromino(Blocks piece, int cellSize, int rot, int posY, int posX) {
 }
 
 
+//move function to mave shapes
 void Move(Blocks* self, int x, int y){
     self->position.x += x;
     self->position.y += y;
 }
 
+// put all shapes in one function 
 Shapes getallblocks(){
      Shapes blocks = {{TShape(),IShape(), SShape(), ZShape(), JShape(), LShape(), OShape()}};
      return blocks;
 }
+//random shape from above function
 Blocks GetRandomBlock(){
      Shapes blocks = getallblocks();
      int num =  GetRandomValue(0, 6);

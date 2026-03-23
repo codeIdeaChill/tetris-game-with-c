@@ -1,4 +1,6 @@
-#include "rotition.h"
+#include "lib/rotition.h"
+
+//for rotition 
 int rotition(int rot){
     if(rot <0 || rot > 3){
         rot = 0;
@@ -16,6 +18,9 @@ int Undorotition(int rot){
     }
     return rot;
 }
+
+
+//handle event mave the block right or left
 void handleEvent(Blocks* block, int rot){
     int event = GetKeyPressed();
     switch(event){
@@ -32,6 +37,7 @@ void handleEvent(Blocks* block, int rot){
     }
 }
 
+// right function
 void MoveRight(Blocks* block, int rot){
     Move(block,1,0);
     if(IsBlockoutside(*block, rot)){
@@ -39,6 +45,7 @@ void MoveRight(Blocks* block, int rot){
     }
 
 }
+//left function
 void MoveLeft(Blocks* block, int rot){
     Move(block,-1,0);
     if(IsBlockoutside(*block, rot)){
@@ -46,10 +53,24 @@ void MoveLeft(Blocks* block, int rot){
     }
 
 }
+//lock function if block touch the bottom
+void LockBlock(Blocks block, int rot){
+    Blocks currentBlock = block;
+    Blocks nextBlock = GetRandomBlock();
+    Posit tiles = Getcellposition(currentBlock, rot);
+    for(int i = 0; i<4; i++){
+        grid[tiles.b1[i].y][tiles.b1[i].x] = block.id;
+    }
+    currentBlock = nextBlock;
+}
+
+
+//move down function
 void MoveDown(Blocks* block, int rot){
     Move(block,0,1);
     if(IsBlockoutside(*block, rot)){
         Move(block,0,-1);
+        LockBlock(*block, rot);
     }
 
 }
