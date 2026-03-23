@@ -1,5 +1,5 @@
 # Project Settings
-PROJECT_NAME = my_game
+PROJECT_NAME = tetris_game
 SRC_DIR      = src
 OBJ_DIR      = obj
 BIN_DIR      = bin
