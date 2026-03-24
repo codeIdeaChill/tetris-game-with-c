@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include "../include/raylib.h"
 #include "lib/grid.h"
 #include "lib/blocks.h"
@@ -9,10 +10,16 @@
 #define SellSize 30
 
 
-int piecesY = 0;
-float timer = 0.0f;
-float movespeed = 0.8f;
-
+double lastUpdateTime = 0;
+bool EventTriggered(double interval){
+    double currentTime = GetTime();
+    if (currentTime - lastUpdateTime >= interval)
+    {
+        lastUpdateTime = currentTime;
+        return true;
+    }
+    return false;
+}
 
 int main(){
     //initialse window
@@ -20,26 +27,31 @@ int main(){
 
     SetTargetFPS(60);
     Grid(); // initial grid as 0
-    Blocks block = GetRandomBlock();
-    Posit test = Getcellposition(block, 0);
+    Blocks currentBlock = GetRandomBlock();
+    //Blocks nextBlock = GetRandomBlock();
     
+    //game loop 
     while(!WindowShouldClose()){
 
-        if(IsBlockoutside(block, rot)){
-            rot = Undorotition(rot);
-        }else{
-            rot = rotition(rot);
+        if(IsKeyPressed(KEY_UP)){
+            rot = rotState(currentBlock, rot);
         }
-        handleEvent(&block, rot);
-        timer += GetFrameTime();
-        if(timer >= movespeed){
-            piecesY += 1;
-            timer = 0.0f;
+        Posit test = Getcellposition(currentBlock,rot);
+        for(int i = 0; i<4;i++){
+            if(test.b1[i].x < 0){
+                Move(&currentBlock,1,0);
+            }else if(test.b1[i].x >= 10){
+                Move(&currentBlock, -1,0);
+            }
         }
+        if(EventTriggered(0.3)){
+            MoveDown(&currentBlock,rot);
+        }
+        handleEvent(&currentBlock, rot);
         BeginDrawing();
             ClearBackground(DARKBLUE);
             Draw();
-            DrawTetromino(block , CellSize, rot, 0, 0);
+            DrawTetromino(currentBlock , CellSize, rot, 0, 0);
         EndDrawing();
     }
 

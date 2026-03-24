@@ -1,21 +1,10 @@
 #include "lib/rotition.h"
 
 //for rotition 
-int rotition(int rot){
-    if(rot <0 || rot > 3){
-        rot = 0;
-    }else{
-        if(IsKeyPressed(KEY_UP))rot++;
-    }
-    return rot;
-}
-int Undorotition(int rot){
-    
-    if(rot <0 || rot > 3){
-        rot = 0;
-    }else{
-        if(IsKeyPressed(KEY_UP)){rot--;}
-    }
+
+int rotState(Blocks currentBlock, int rot){
+    rot++;
+    if(rot>3)rot=0;
     return rot;
 }
 
@@ -55,20 +44,20 @@ void MoveLeft(Blocks* block, int rot){
 }
 //lock function if block touch the bottom
 void LockBlock(Blocks block, int rot){
-    Blocks currentBlock = block;
-    Blocks nextBlock = GetRandomBlock();
-    Posit tiles = Getcellposition(currentBlock, rot);
+
+    Posit tiles = Getcellposition(block, rot);
     for(int i = 0; i<4; i++){
         grid[tiles.b1[i].y][tiles.b1[i].x] = block.id;
     }
-    currentBlock = nextBlock;
+    Game();
+    
 }
 
 
 //move down function
 void MoveDown(Blocks* block, int rot){
     Move(block,0,1);
-    if(IsBlockoutside(*block, rot)){
+    if(IsBlockoutside(*block, rot) || FitsBlock(*block,rot) == false){
         Move(block,0,-1);
         LockBlock(*block, rot);
     }

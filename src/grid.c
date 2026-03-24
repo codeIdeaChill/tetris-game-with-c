@@ -19,7 +19,7 @@ void Print(){
           printf("\n");
      } 
 }
-//draw rectangle for each cell of grid according to value of it
+//draw rectangle for each cell of grid according to the value of it
 void Draw(){
     for(int row = 0; row < 10; row++){
         for(int col = 0; col < 20; col++){
@@ -29,3 +29,9 @@ void Draw(){
     }
 }
 
+bool IscellEmpty(int row,int col){
+    if(grid[row][col] == 0){
+        return true;
+    }
+    return false;
+}

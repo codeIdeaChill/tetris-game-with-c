@@ -1,3 +1,7 @@
 #include "lib/map.h"
-void replacegrid(){
+#include "lib/rotition.h"
+void Game(){
+    Blocks nextBlock = GetRandomBlock();
+    currentBlock = nextBlock;
 }
+

@@ -27,9 +27,9 @@ bool IsCelloutside(int row, int col){
     return true;
 }
 
+
 //check if block is outside the grid 
 bool IsBlockoutside(Blocks block, int rot){
-
     Posit tiles = Getcellposition(block, rot);
     for(int i =0;i < 4; i++){
         if(IsCelloutside((int)tiles.b1[i].y, (int)tiles.b1[i].x)){
@@ -39,10 +39,17 @@ bool IsBlockoutside(Blocks block, int rot){
     return false;
 }
 
-//for new block if the current block is touch the bottom
-void NewBlock(){
-    Blocks currentBlock = GetRandomBlock();
-    Blocks nextBlock;
-    DrawTetromino(currentBlock , CellSize, rot, 0, 0);
+//for new block if the current block is fit with abviose block
+bool FitsBlock(Blocks test, int rot){
+    Posit tiles = Getcellposition(test, rot);
+    for(int i = 0;i < 4;i++){
+        if(IscellEmpty(tiles.b1[i].x, tiles.b1[i].y) == false){
+            return false;
+        }
+    }
+    return true;
 
 } 
+
+
+

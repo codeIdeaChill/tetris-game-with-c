@@ -9,6 +9,5 @@ void MoveRight(Blocks* block, int rot);
 void MoveLeft(Blocks* block, int rot);
 void MoveDown(Blocks* block, int rot);
 void LockBlock(Blocks block, int rot);
-int Undorotition(int rot);
-int rotition(int rot);
+int rotState(Blocks currentBlock, int rot);
 void handleEvent(Blocks* block, int rot);
