@@ -29,7 +29,7 @@ void handleEvent(Blocks* block, int rot){
 // right function
 void MoveRight(Blocks* block, int rot){
     Move(block,1,0);
-    if(IsBlockoutside(*block, rot)){
+    if(IsBlockoutside(*block, rot) || !FitsBlock(currentBlock,rot)){
         Move(block,-1,0);
     }
 
@@ -37,7 +37,7 @@ void MoveRight(Blocks* block, int rot){
 //left function
 void MoveLeft(Blocks* block, int rot){
     Move(block,-1,0);
-    if(IsBlockoutside(*block, rot)){
+    if(IsBlockoutside(*block, rot) || !FitsBlock(currentBlock,rot)){
         Move(block,1,0);
     }
 

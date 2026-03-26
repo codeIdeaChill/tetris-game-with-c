@@ -28,7 +28,6 @@ int main(){
     SetTargetFPS(60);
     Grid(); // initial grid as 0
     Blocks currentBlock = GetRandomBlock();
-    //Blocks nextBlock = GetRandomBlock();
     
     //game loop 
     while(!WindowShouldClose()){
@@ -38,10 +37,10 @@ int main(){
         }
         Posit test = Getcellposition(currentBlock,rot);
         for(int i = 0; i<4;i++){
-            if(test.b1[i].x < 0 || !FitsBlock(currentBlock,rot)){
+            if(test.b1[i].x < 0){
                 Move(&currentBlock,1,0);
             }
-            if(test.b1[i].x >= 10 || !FitsBlock(currentBlock,rot)){
+            if(test.b1[i].x >= 10 ){
                 Move(&currentBlock, -1,0);
             }
         }
