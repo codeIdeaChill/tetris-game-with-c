@@ -44,7 +44,7 @@ int main(){
                 Move(&currentBlock, -1,0);
             }
         }
-        if(EventTriggered(0.3)){
+        if(EventTriggered(0.3) && FitsBlock(currentBlock,rot)){
             MoveDown(&currentBlock,rot);
         }
         handleEvent(&currentBlock, rot);

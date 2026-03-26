@@ -43,11 +43,11 @@ bool IsBlockoutside(Blocks block, int rot){
 bool FitsBlock(Blocks test, int rot){
     Posit tiles = Getcellposition(test, rot);
     for(int i = 0;i < 4;i++){
-        if(IscellEmpty(tiles.b1[i].x, tiles.b1[i].y) == false){
-            return false;
+        if(IscellEmpty(tiles.b1[i].x, tiles.b1[i].y)){
+            return true;
         }
     }
-    return true;
+    return false;
 
 } 
 

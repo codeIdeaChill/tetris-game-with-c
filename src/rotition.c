@@ -49,10 +49,13 @@ void LockBlock(Blocks block, int rot){
     for(int i = 0; i<4; i++){
         grid[tiles.b1[i].y][tiles.b1[i].x] = block.id;
     }
-    Game();
     
 }
-
+void newBlock(Blocks* block,int rot){
+    Blocks newBlock = GetRandomBlock();
+    *block = newBlock;
+    block->position.y = 0;
+}
 
 //move down function
 void MoveDown(Blocks* block, int rot){
@@ -60,6 +63,7 @@ void MoveDown(Blocks* block, int rot){
     if(IsBlockoutside(*block, rot) || FitsBlock(*block,rot) == false){
         Move(block,0,-1);
         LockBlock(*block, rot);
+        newBlock(block, rot);
     }
 
 }

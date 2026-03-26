@@ -276,7 +276,7 @@ Blocks IShape(){
                 {0,0,0,0}
             },
         },
-        .position = {0,0},
+        .position = {4,0},
         .color = Cellcolor[peice.id], 
     };
     return peice;
