@@ -4,10 +4,11 @@ this my sample project in C programming language
 
 _____________________________________
 
-# support os (windows and linux)
+## support os (windows and linux)
 
-installation:
-# linux:
+# How to install:
+______________________
+## linux:
 ```
 git clone https://github.com/codeIdeaChill/tetris-game-with-c.git 
 cd tetris-game-with-c 
@@ -15,9 +16,9 @@ make
 ./bin/tetris_game
 ```
 
-# windows:
+## windows:
 
-requirment mingw64 version of gcc
+requirment mingw64 version of gcc with make 
 
 ```
 download the repo 
