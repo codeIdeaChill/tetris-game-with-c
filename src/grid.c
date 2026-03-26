@@ -30,8 +30,8 @@ void Draw(){
 }
 
 bool IscellEmpty(int row,int col){
-    if(grid[row][col] == 0){
-        return true;
+    if(grid[col][row] == 0){
+        return false;
     }
-    return false;
+    return true;
 }

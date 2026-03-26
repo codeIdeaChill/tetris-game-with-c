@@ -60,7 +60,7 @@ void newBlock(Blocks* block,int rot){
 //move down function
 void MoveDown(Blocks* block, int rot){
     Move(block,0,1);
-    if(IsBlockoutside(*block, rot) || FitsBlock(*block,rot) == false){
+    if(IsBlockoutside(*block, rot) || !FitsBlock(*block,rot)){
         Move(block,0,-1);
         LockBlock(*block, rot);
         newBlock(block, rot);

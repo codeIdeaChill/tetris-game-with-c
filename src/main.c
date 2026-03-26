@@ -38,13 +38,14 @@ int main(){
         }
         Posit test = Getcellposition(currentBlock,rot);
         for(int i = 0; i<4;i++){
-            if(test.b1[i].x < 0){
+            if(test.b1[i].x < 0 || !FitsBlock(currentBlock,rot)){
                 Move(&currentBlock,1,0);
-            }else if(test.b1[i].x >= 10){
+            }
+            if(test.b1[i].x >= 10 || !FitsBlock(currentBlock,rot)){
                 Move(&currentBlock, -1,0);
             }
         }
-        if(EventTriggered(0.3) && FitsBlock(currentBlock,rot)){
+        if(EventTriggered(0.3)){
             MoveDown(&currentBlock,rot);
         }
         handleEvent(&currentBlock, rot);
