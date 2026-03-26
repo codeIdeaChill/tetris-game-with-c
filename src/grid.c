@@ -35,3 +35,37 @@ bool IscellEmpty(int row,int col){
     }
     return true;
 }
+bool Rowcomplete(int row){
+    int complete = 0;
+    for(int col = 0; col < col_offset; col++ ){
+        if(grid[row][col] != 0){
+            complete++;
+        }
+    }
+    if(complete == 10){
+        return true;
+    }
+    return false;
+}
+
+void ShiftRow(int row){
+    for(int col = col_offset - 1; col >= 0; col--){
+        if(IscellEmpty(col, row)){
+            grid[col-1][row] = grid[col][row];
+            grid[col][row] = 0;
+        }
+    }
+    
+}
+void deleteRow(){
+    for(int row = row_offset - 1; row >=0; row--){
+        if(Rowcomplete(row)){
+            for(int col = 0;col < col_offset; col++){
+                grid[row][col] = 0;
+            }
+        }
+        ShiftRow(row);
+    }
+}
+
+

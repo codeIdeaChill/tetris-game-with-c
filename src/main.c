@@ -47,6 +47,7 @@ int main(){
         if(EventTriggered(0.3)){
             MoveDown(&currentBlock,rot);
         }
+        deleteRow();
         handleEvent(&currentBlock, rot);
         BeginDrawing();
             ClearBackground(DARKBLUE);

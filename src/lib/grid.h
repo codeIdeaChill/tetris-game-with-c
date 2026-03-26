@@ -13,3 +13,4 @@ void Grid();
 void Draw();
 void Print();
 bool IscellEmpty(int row,int col);
+void deleteRow();
