@@ -51,6 +51,8 @@ bool FitsBlock(Blocks test, int rot){
 
 } 
 
+
+//update score with rows deleted
 void UpdateScore(){
     int complete = DeleteFullRows();
     switch(complete){
@@ -65,6 +67,12 @@ void UpdateScore(){
             break;
     }
     DrawText(TextFormat("SCORE: %d", score), 350, 20 , 20, WHITE);
+    
 
 }
 
+void rest(){
+    Grid();
+    currentBlock = GetRandomBlock();
+
+}

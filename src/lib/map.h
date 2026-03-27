@@ -11,6 +11,7 @@
 typedef struct{
     vector b1[4];
 }Posit;
+static bool gameOver = false;
 static int score = 0;
 static Blocks currentBlock;
 static Blocks nextBlock;
@@ -18,4 +19,5 @@ Posit Getcellposition(Blocks block, int rot);
 bool IsBlockoutside(Blocks block, int rot);
 bool IsCelloutside(int row, int col);
 bool FitsBlock(Blocks test, int rot);
-void Game();
+void GameInfo(Font font);
+void rest();

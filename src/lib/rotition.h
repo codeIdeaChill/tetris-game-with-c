@@ -12,5 +12,5 @@ void LockBlock(Blocks block, int rot);
 int rotState(Blocks currentBlock, int rot);
 void handleEvent(Blocks* block, int rot);
 void newBlock(Blocks* block,int rot);
-void DrawNextBlock(Blocks* block);
+void DrawNextBlock(Blocks block);
 void UpdateScore();

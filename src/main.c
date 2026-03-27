@@ -25,6 +25,7 @@ int main(){
     //initialse window
     InitWindow(WIDTH, HIEGHT, "tetris");
 
+    Font font = LoadFontEx("font/ARCADECLASSIC.TTF",62,0,0);
     SetTargetFPS(60);
     Grid(); // initial grid as 0
     Blocks currentBlock = GetRandomBlock();
@@ -32,7 +33,7 @@ int main(){
     while(!WindowShouldClose()){
 
         if(IsKeyPressed(KEY_UP) || !FitsBlock(currentBlock, rot)){
-            rot = rotState(currentBlock, rot);
+            if(!gameOver)rot = rotState(currentBlock, rot);
         }
         Posit test = Getcellposition(currentBlock,rot);
         for(int i = 0; i<4;i++){
@@ -43,19 +44,27 @@ int main(){
                 Move(&currentBlock, -1,0);
             }
         }
-        if(EventTriggered(0.3)){
+        if(EventTriggered(0.3) && !gameOver){
             MoveDown(&currentBlock,rot);
         }
         handleEvent(&currentBlock, rot);
         BeginDrawing();
-            ClearBackground(DARKBLUE);
-            Draw();
+        //begin
+        ClearBackground(DARKBLUE);
+        Draw();
+        if(!gameOver){
             DrawTetromino(currentBlock , CellSize, rot, 0, 0);
+        }
+        if(gameOver){
+            DrawText("Game Over", 350, 250 , 30, WHITE);
+        }
         UpdateScore();
-        DrawNextBlock(&nextBlock);
+        DrawNextBlock(nextBlock);
+        GameInfo(font);
+        //End drawing
         EndDrawing();
     }
-
+    UnloadFont(font);
     CloseWindow();
 
     return 0;

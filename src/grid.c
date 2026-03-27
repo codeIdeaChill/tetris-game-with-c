@@ -47,6 +47,8 @@ bool Rowcomplete(int row){
     return true;
 }
 
+
+//move row down
 void MoveRowDown(int row, int rowCount){
     for(int col = col_offset - 1; col >= 0; col--){
         grid[row + rowCount][col] = grid[row][col];
@@ -54,12 +56,15 @@ void MoveRowDown(int row, int rowCount){
     }
     
 }
+
+//delete row
 void deleteRow(int row){
     for(int col = 0;col < col_offset; col++){
         grid[row][col] = 0;
     }
 }
 
+//delete full row 
 int DeleteFullRows(){
     int completed = 0;
     for(int row = row_offset -1; row >=0; row--){
