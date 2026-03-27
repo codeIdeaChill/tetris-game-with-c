@@ -51,9 +51,13 @@ void LockBlock(Blocks block, int rot){
     }
     
 }
+void DrawNextBlock(Blocks* block){
+    block->position.x = 500 - (4*30);
+    DrawTetromino(*block , CellSize, rot, 0, 0);
+}
 void newBlock(Blocks* block,int rot){
-    Blocks newBlock = GetRandomBlock();
-    *block = newBlock;
+    nextBlock = GetRandomBlock();
+    *block = nextBlock;
     block->position.y = 0;
 }
 
@@ -64,7 +68,7 @@ void MoveDown(Blocks* block, int rot){
         Move(block,0,-1);
         LockBlock(*block, rot);
         newBlock(block, rot);
+        score += 5;
     }
 
 }
-

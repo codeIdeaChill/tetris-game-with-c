@@ -28,44 +28,48 @@ void Draw(){
         }
     }
 }
-
+//check if the grid has value 0 in row and column cordinate
 bool IscellEmpty(int row,int col){
     if(grid[col][row] == 0){
         return false;
     }
     return true;
 }
+
+//check if the row was completed and delete it and move it down
+
 bool Rowcomplete(int row){
-    int complete = 0;
     for(int col = 0; col < col_offset; col++ ){
-        if(grid[row][col] != 0){
-            complete++;
+        if(grid[row][col] == 0){
+            return false;
         }
     }
-    if(complete == 10){
-        return true;
-    }
-    return false;
+    return true;
 }
 
-void ShiftRow(int row){
+void MoveRowDown(int row, int rowCount){
     for(int col = col_offset - 1; col >= 0; col--){
-        if(IscellEmpty(col, row)){
-            grid[col-1][row] = grid[col][row];
-            grid[col][row] = 0;
-        }
+        grid[row + rowCount][col] = grid[row][col];
+        grid[row][col] = 0;
     }
     
 }
-void deleteRow(){
-    for(int row = row_offset - 1; row >=0; row--){
-        if(Rowcomplete(row)){
-            for(int col = 0;col < col_offset; col++){
-                grid[row][col] = 0;
-            }
-        }
-        ShiftRow(row);
+void deleteRow(int row){
+    for(int col = 0;col < col_offset; col++){
+        grid[row][col] = 0;
     }
 }
 
+int DeleteFullRows(){
+    int completed = 0;
+    for(int row = row_offset -1; row >=0; row--){
+        if(Rowcomplete(row)){
+            deleteRow(row);
+            completed++;
+        }else if(completed > 0){
+            MoveRowDown(row, completed);
+        }
+    }
+    return completed;
+}
 

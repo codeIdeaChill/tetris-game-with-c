@@ -28,11 +28,10 @@ int main(){
     SetTargetFPS(60);
     Grid(); // initial grid as 0
     Blocks currentBlock = GetRandomBlock();
-    
     //game loop 
     while(!WindowShouldClose()){
 
-        if(IsKeyPressed(KEY_UP)){
+        if(IsKeyPressed(KEY_UP) || !FitsBlock(currentBlock, rot)){
             rot = rotState(currentBlock, rot);
         }
         Posit test = Getcellposition(currentBlock,rot);
@@ -47,12 +46,13 @@ int main(){
         if(EventTriggered(0.3)){
             MoveDown(&currentBlock,rot);
         }
-        deleteRow();
         handleEvent(&currentBlock, rot);
         BeginDrawing();
             ClearBackground(DARKBLUE);
             Draw();
             DrawTetromino(currentBlock , CellSize, rot, 0, 0);
+        UpdateScore();
+        DrawNextBlock(&nextBlock);
         EndDrawing();
     }
 

@@ -51,5 +51,20 @@ bool FitsBlock(Blocks test, int rot){
 
 } 
 
+void UpdateScore(){
+    int complete = DeleteFullRows();
+    switch(complete){
+        case 1:
+            score += 10;
+            break;
+        case 2:
+            score += 20;
+            break;
+        case 3:
+            score += 35;
+            break;
+    }
+    DrawText(TextFormat("SCORE: %d", score), 350, 20 , 20, WHITE);
 
+}
 
