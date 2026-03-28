@@ -27,6 +27,11 @@ void handleEvent(Blocks* block, int rot){
         case KEY_DOWN:
             MoveDown(block,rot);       
             break;
+        case KEY_R:
+              rest();
+              score = 0;
+              gameOver = false;
+              break;
 
     }
 }

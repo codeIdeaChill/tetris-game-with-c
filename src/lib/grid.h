@@ -1,5 +1,5 @@
 #pragma once
-#include "../include/raylib.h"
+#include "../../include/raylib.h"
 #include <stdbool.h>
 
 #define CellSize 30
