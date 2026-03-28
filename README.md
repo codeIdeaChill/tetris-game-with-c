@@ -21,10 +21,15 @@ make
 requirment mingw64 version of gcc with make 
 
 ```
-download the repo 
-open project and run cmd inside the folder 
+download the project : https://github.com/codeIdeaChill/tetris-game-with-c/archive/refs/heads/main.zip 
+extract it and go inside the project
 run : make
 ```
 
 the exe file will make in bin folder
+
+
+# try play it in Web
+
+[PLAY ME](https://codeideachill.github.io/tetris-Game-Web/)
 
